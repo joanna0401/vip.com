@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="dist/css/commen.css">
+    <link rel="stylesheet" href="dist/css/user.css">
+    <link rel="shortcut icon" type="image/x-icon" href="dist/images/favicon.ico" media="screen" />
+</head>
+
+<body style="background-color:#FDFBFE;">
+    <div class="loginBox">
+        <div class="top">
+            <a href="#" class="to_index"></a>
+            <div class="banner_right"></div>
+        </div>
+        <div class="loginBody">
+            <div class="loginForm">
+                <p>欢迎注册</p>
+                <a href="login.html" class="to_login">已注册可直接登录</a>
+                <form action="">
+                    <label for="">
+                        <input type="text" name="username" placeholder="请输入手机号码" id="telephoto">
+                        <span class="telephoto">&nbsp;</span>
+                    </label>
+                    <label for="">
+                        <input type="password" name="password" placeholder="密码由6-20位字母,数字和符号组合" id="pass1">
+                        <span class="pass1">&nbsp;</span>
+                    </label>
+                    <label for="">
+                        <input type="password" name="password2" placeholder="请再次输入上面的密码" id="pass2">
+                        <span class="pass2">&nbsp;</span>
+                    </label>
+                    <label for="">
+                        <input type="text" name="code" placeholder="短信验证码">
+                        <a href="javascript:;" class="button disable">获取验证码</a>
+                        <!-- <button class="button disable">获取验证码</button> -->
+                    </label>
+                    <label for="">
+                        <a href="javascript:;" class="logNow">立即注册</a>
+                        <a href="#" class="to_email">通过邮箱注册>></a>
+                    </label>
+                    <label for="">
+                        <input type="checkbox" checked><a href="#" class="readme">我已阅读并接受唯品会服务条款。</a>
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright 2008-2017 vip.com，All Rights Reserved ICP证：粤 B2-20080329</p>
+    </footer>
+</body>
+
+</html>
+<script src="dist/js/jquery.min.js"></script>
+<script>
+$(function() {
+
+    var pass1Bool = false;
+    var pass2Bool = false;
+    var teleBool = false;
+
+    //手机号码正则验证
+    $('#telephoto').bind({
+        focus: function() {
+            $('.telephoto').css('display', 'block');
+            if ($(this).val()) {
+                var value = $(this).val();
+                // 手机号码
+                var pattern3 = /^[1][345789][0-9]{9}$/;
+                // 输入内容与正则进行验证
+                if (pattern3.test(value)) {
+                    $('.telephoto').html('手机号码可以使用');
+                    $('#telephoto').css({
+                        'border-color': '#f8dcb0',
+                        'background-color': '#fffbf3'
+                    });
+                    teleBool = true;
+
+                } else {
+                    $('.telephoto').html('手机号码不正确,请重新输入');
+                    $('#telephoto').css({
+                        'border-color': '#fca1a5',
+                        'background-color': '#ffe6e7'
+                    });
+                    teleBool = false;
+                }
+            } else {
+                $('.telephoto').html('请输入您的手机号码');
+                teleBool = false;
+            }
+
+        },
+        blur: function() {
+            $('.telephoto').css('display', 'none');
+            if ($(this).val()) {
+                var value = $(this).val();
+                // 手机号码
+                var pattern3 = /^[1][345789][0-9]{9}$/;
+                // 输入内容与正则进行验证
+                if (pattern3.test(value)) {
+                    teleBool = true;
+                    $('#telephoto').css({
+                        'border-color': '#f8dcb0',
+                        'background-color': '#fffbf3'
+                    });
+                    $('.button').addClass('able');
+                    $('.button').removeClass('disable');
+                } else {
+                    $('#telephoto').css({
+                        'border-color': '#fca1a5',
+                        'background-color': '#ffe6e7'
+                    });
+                    $('.button').addClass('disable');
+                    $('.button').removeClass('able');
+                    teleBool = false;
+                }
+            } else {
+                $('.button').addClass('disable');
+                $('.button').removeClass('able');
+                teleBool = false;
+            }
+        }
+    });
+
+    // 验证密码
+    $('#pass1').bind({
+        focus: function() {
+            $('.pass1').css('display', 'block');
+            if ($(this).val()) {
+                var value = $(this).val();
+                // 6-20为字母数字下划线汉字的正则表达式
+                var pattern2 = /^[a-zA-Z0-9@!#\$%\^&\*\(\)\.]{6,20}$/;
+                // 输入内容与正则进行验证
+                if (pattern2.test(value)) {
+                    $('.pass1').html('密码可用');
+                    $('#pass1').css({
+                        'border-color': '#f8dcb0',
+                        'background-color': '#fffbf3'
+                    });
+                    pass1Bool = true;
+                } else {
+                    $('.pass1').html('密码为6-20位字母数字和符号的组合,格式不正确,请重新输入');
+                    $('#pass1').css({
+                        'border-color': '#fca1a5',
+                        'background-color': '#ffe6e7'
+                    });
+                    pass1Bool = false;
+                }
+            } else {
+                $('.pass1').html('密码为6-20位字母数字和符号的组合');
+                pass1Bool = false;
+            }
+        },
+        blur: function() {
+            $('.pass1').css('display', 'none');
+            if ($(this).val()) {
+                var value = $(this).val();
+                // 6-20为字母数字下划线汉字的正则表达式
+                var pattern2 = /^[a-zA-Z0-9@!#\$%\^&\*\(\)\.]{6,20}$/;
+                // 输入内容与正则进行验证
+                if (pattern2.test(value)) {
+                    $('#pass1').css({
+                        'border-color': '#f8dcb0',
+                        'background-color': '#fffbf3'
+                    });
+                    pass1Bool = true;
+                } else {
+                    $('#pass1').css({
+                        'border-color': '#fca1a5',
+                        'background-color': '#ffe6e7'
+                    });
+                    pass1Bool = false;
+                }
+            } else {
+                pass1Bool = false;
+            }
+        },
+        // change:function(){
+
+        // }
+    });
+
+    // 验证两次密码是否一致
+    $('#pass2').bind({
+        focus: function() {
+            $('.pass2').css('display', 'block');
+            $('.pass2').html('请输入确认密码');
+            if ($('#pass1').val() && $(this).val() && pass1Bool) {
+                if ($(this).val() == $('#pass1').val()) {
+                    $('.pass2').html('密码可用');
+                    $('#pass2').css({
+                        'border-color': '#f8dcb0',
+                        'background-color': '#fffbf3'
+                    });
+                    pass2Bool = true;
+                } else {
+                    $('.pass2').html('两次输入密码不一致,需重新输入');
+                    $('#pass2').css({
+                        'border-color': '#fca1a5',
+                        'background-color': '#ffe6e7'
+                    });
+                    pass2Bool = false;
+                }
+            }
+        },
+        blur: function() {
+            $('.pass2').css('display', 'none');
+            if ($('#pass1').val() && $(this).val() && pass1Bool) {
+                if ($(this).val() == $('#pass1').val()) {
+                    $('#pass2').css({
+                        'border-color': '#f8dcb0',
+                        'background-color': '#fffbf3'
+                    });
+                    pass2Bool = true;
+                } else {
+                    $('#pass2').css({
+                        'border-color': '#fca1a5',
+                        'background-color': '#ffe6e7'
+                    });
+                    pass2Bool = false;
+                }
+            }
+        }
+    });
+
+    // #pass1的值改变时,#pass2再次验证
+    $('#pass1').change(function() {
+        if ($('#pass1').val() && $('#pass2').val() && pass1Bool) {
+            if ($('#pass1').val() == $('#pass2').val()) {
+                $('.pass2').html('密码可以使用');
+                $('#pass1').css({
+                    'border-color': '#f8dcb0',
+                    'background-color': '#fffbf3'
+                });
+                pass2Bool = true;
+            } else {
+                $('.pass2').html('两次输入密码不一致,请重新输入');
+                $('#pass1').css({
+                    'border-color': '#fca1a5',
+                    'background-color': '#ffe6e7'
+                });
+                pass2Bool = false;
+            }
+        }
+    });
+
+
+    var clickbut = true;
+    // 点击发送验证码
+    $('.button').click(function() {
+        if (clickbut && teleBool) {
+            clickbut = false;
+            $('.button').addClass('disable');
+            var num = 11;
+            var timer = setInterval(function() {
+                num--;
+                $('.button').html(num + "秒后重新发送");
+                if (num == -1) {
+                    $('.button').removeClass('disable');
+                    $('.button').html("获取验证码");
+                    clearInterval(timer);
+                    clickbut = true;
+                }
+            }, 1000);
+        }
+    })
+
+    // 当有一项不符合时,阻止表单提交
+    $('#form').submit(function() {
+        if (pass1Bool && pass2Bool && teleBool) {
+            return true;
+        } else {
+            return false;
+        }
+    })
+
+});
+</script>

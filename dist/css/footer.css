@@ -1,0 +1,128 @@
+footer {
+  line-height: 22px;
+  color: #4d4d4d;
+  overflow: hidden;
+  background-color: #FCFCFC;
+  padding-top: 20px;
+  border-top: 1px solid #ebebeb;
+}
+
+.footer {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.linkList {
+  margin-top: 38px;
+  margin-bottom: 15px;
+}
+.linkList dd a {
+  display: block;
+  color: gray;
+  padding-left: 8px;
+  background: url("../images/footer.png") no-repeat -6px -494px;
+  transition: transform .2s ease-out 0s;
+}
+.linkList dd a:hover {
+  color: #d7237e;
+  transform: translateX(2px);
+  background: url("../images/footer.png") no-repeat -6px -513px;
+}
+
+.linkList dl {
+  float: left;
+  padding-left: 20px;
+  width: 138px;
+  border-right: 1px solid #e0e0e0;
+}
+
+.linkList dl:nth-of-type(6) {
+  border-right: 0 solid #e0e0e0;
+}
+
+.linkList:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.footerInfo {
+  height: 30px;
+  line-height: 30px;
+  background-color: #d7237e;
+}
+.footerInfo p {
+  text-align: center;
+  color: #fff;
+}
+.footerInfo p a {
+  color: #fff;
+}
+.footerInfo p a:hover {
+  color: #ccc;
+}
+
+.footerText {
+  text-align: center;
+  line-height: 20px;
+  padding: 14px 0;
+  color: #999;
+}
+.footerText a {
+  color: gray;
+}
+.footerText a:hover {
+  color: #d7237e;
+}
+
+.footerPic {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.footerPic:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.footerPic a {
+  display: block;
+  float: left;
+  margin-right: 9px;
+}
+.footerPic i {
+  display: block;
+  height: 40px;
+  background-image: url("../images/footer.png");
+  background-repeat: no-repeat;
+}
+.footerPic .one i {
+  width: 105px;
+  background-position: 0 0;
+}
+.footerPic .two i {
+  width: 99px;
+  background-position: 0 -150px;
+}
+.footerPic .three i {
+  width: 66px;
+  background-position: 0 -200px;
+}
+.footerPic .four i {
+  width: 70px;
+  background-position: 0 -250px;
+}
+.footerPic .five i {
+  width: 74px;
+  background-position: 0 -300px;
+}
+.footerPic .six i {
+  width: 76px;
+  background-position: 0 -400px;
+}
+.footerPic .senven i {
+  width: 76px;
+  background-position: 0 -450px;
+}
+
+/*# sourceMappingURL=footer.css.map */

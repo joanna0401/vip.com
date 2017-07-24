@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" href="dist/css/commen.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_4b9cwsdmaj2oi529.css">
+    <!-- <link rel="stylesheet" href=" http://at.alicdn.com/t/font_9brwlghngyhhyqfr.css"> -->
+    <link rel="stylesheet" href="dist/css/user.css">
+    <link rel="shortcut icon" type="image/x-icon" href="dist/images/favicon.ico" media="screen" />
+</head>
+
+<body>
+    <!-- 导航内容 nav -->
+    <div class="cart_logo">
+        <div class="cart_inner">
+            <div class="cart_left">
+                <a href="#"></a>
+            </div>
+            <div class="cart_right">
+                <ul>
+                    <li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>
+                    <li class="line">|</li>
+                    <li><i class="iconfont icon-dianhua"></i>400-6789-888 </li>
+                    <li class="line">|</li>
+                    <li><a href="#"><i class="iconfont icon-kefu"></i>在线客服</a></li>
+                    <li class="line">|</li>
+                    <li class="user_service">
+                        <dl>
+                            <dt><i class="iconfont icon-huiyuan"></i>会员服务 <em><i class="iconfont icon-shangjiantou"></i></em></dt>
+                            <dd><a href="#">帮助中心</a></dd>
+                            <dd><a href="#">会员反馈</a></dd>
+                            <dd><a href="#">会员俱乐部</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <br>
+                <span><i class="iconfont icon-gou"></i>100% 正品保证</span>
+                <span><i class="iconfont icon-tian"></i>七天无理由放心退</span>
+                <span><i class="iconfont icon-tuihuoshouhou"></i>退货返运费</span>
+            </div>
+        </div>
+    </div>
+    <div class="user_container">
+        <div class="cart_step">
+            <div class="step_1">
+                <a href="cart.html">
+                    <div class="one"></div>
+                    <span>查看购物袋</span>
+                </a>
+            </div>
+            <div class="step finished"></div>
+            <div class="step_2">
+                <div class="two"></div>
+                <span>确认订单信息</span>
+            </div>
+            <div class="step unfinished"></div>
+            <div class="step_3">
+                <div class="three"></div>
+                <span>成功提交订单</span>
+            </div>
+        </div>
+        <div class="cart_countdowm">
+            <p><i class="icon"></i>请在 <span><em class="minite">00</em>分<em class="seconed">00</em>秒</span>内提交订单，下单后你另有 30 分钟的支付时间。 <i class="iconfont icon-wenhao"></i></p>
+            <div class="cart_text">
+                好商品需要精挑细选，特意为你留足20分钟考虑时间；
+                <br>超时后仍可尝试结算，没被人抢走的商品我们会帮你重新放入购物袋。
+            </div>
+        </div>
+        <div class="cart_box">
+            <div class="cart_header">
+                <span>唯品自营</span><span>单价</span><span>数量</span><span>小计</span><span>操作</span>
+            </div>
+            <div class="cart_content">
+                <table width="100%" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="6">
+                            <p><i>满减</i>已满足跨专场，满398减60，上不封顶 [已优惠¥ <span>{{total.cut | number}}</span>]</p>
+                        </td>
+                    </tr>
+                    <tr v-for="(shop,index) in shoplist">
+                        <td class="cart_img">
+                            <a href="#">
+                                <img :src="shop.img" alt="">
+                            </a>
+                        </td>
+                        <td class="cart_title">
+                            <a href="#">{{shop.title}}</a>
+                            <p>尺码：38</p>
+                        </td>
+                        <td class="cart_price">
+                            <span>¥{{shop.price}}</span>
+                            <br>
+                            <del>¥{{shop.oldprice}}</del>
+                        </td>
+                        <td class="cart_number">
+                            <button @click="jian(index)" class="jian">-</button>
+                            <input type="text" v-bind:value="shop.num" readonly>
+                            <button @click="jia(index)" class="jia">+</button>
+                        </td>
+                        <td class="cart_sum">
+                            <span>¥{{(shop.price-shop.priceCut)*shop.num}}</span>
+                            <br>
+                            <p>已优惠¥ <em>{{shop.priceCut*shop.num}}</em></p>
+                        </td>
+                        <td class="cart_delate">
+                            <button @click="del(index)">
+                                <span class="but_icon_top"></span>
+                                <span class="but_icon_bottom"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="cart_footer">
+                <p><span>运费</span>本组商品已免运费</p>
+            </div>
+        </div>
+        <!-- 结算 -->
+        <div class="accounts">
+            <div class="accounts_money">
+                <ul>
+                    <li>
+                        <p>共 <span>{{total.sum}}</span>件商品&nbsp;商品金额 </p><span class="money_sum">¥<i>{{total.price | number}}</i></span>
+                    </li>
+                    <li>
+                        <p>活动优惠</p><span class="money_sum">-¥<i>{{total.cut | number}}</i></span>
+                    </li>
+                    <li>
+                        <p>总金额(已免运费)</p><span class="money_sum money_total">¥<i>{{total.price-total.cut | number}}</i></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="accounts_time accounts_time_fixed">
+                <p>请在倒计时前结算</p><i class="iconfont icon-wenhao"></i><a href="#">立即结算<span><em class="minite">00</em>:<em class="seconed">00</em></span></a>
+            </div>
+        </div>
+        <div class="promises">
+            <div class="promises_item promises_assure_item"></div>
+            <div class="promises_item promises_return_item"></div>
+            <div class="promises_item promises_charge_item"></div>
+        </div>
+    </div>
+    <!-- 底部内容 -->
+    <iframe src="footer2.html" frameborder="0" width="100%" height="200" scrolling="no"></iframe>
+</body>
+
+</html>
+<script src="dist/js/vue.min.js"></script>
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/user.js"></script>
+<script>
+Vue.filter('number', function(value) {
+    return value.toFixed(2);
+})
+new Vue({
+    el: ".user_container",
+    data: {
+        shoplist: [{
+            id: 1,
+            title: "独特设计感-Masfer.SU女装专场 - 格纹V领无袖连衣裙",
+            img: "dist/pic/hot1.1.jpg",
+            price: 1599,
+            oldprice: 2599,
+            priceCut: 100,
+            num: 1
+        }, {
+            id: 2,
+            title: "珍珠饰套脚踝平底凉拖鞋米白色",
+            img: "dist/pic/hot1.2.jpg",
+            price: 1299,
+            oldprice: 1599,
+            priceCut: 200,
+            num: 1
+        }, {
+            id: 3,
+            title: "珍珠饰套脚踝平底凉拖鞋米黑色",
+            img: "dist/pic/hot1.3.jpg",
+            price: 889,
+            oldprice: 1889,
+            priceCut: 166,
+            num: 1
+        }, {
+            id: 4,
+            title: "珍珠饰套脚踝平底凉拖鞋米白色",
+            img: "dist/pic/hot1.2.jpg",
+            price: 1100,
+            oldprice: 1700,
+            priceCut: 110,
+            num: 1
+        }],
+    },
+    methods: {
+        jia: function(index) {
+            this.shoplist[index].num++;
+            if (this.shoplist[index].num >= 2) {
+                this.shoplist[index].num = 2;
+            }
+        },
+        jian: function(index) {
+            this.shoplist[index].num--;
+            if (this.shoplist[index].num <= 1) {
+                this.shoplist[index].num = 1;
+            }
+        },
+        del: function(index) {
+            // splice(删除第一个元素的索引，长度个数);
+            this.shoplist.splice(index, 1);
+        },
+    },
+    computed: {
+        total: function() {
+            // 总价格和总数默认为0
+            var total = {
+                price: 0,
+                sum: 0,
+                cut: 0
+            };
+
+            // 通过that将this关键字引入到下面的函数中，保证this的正常使用
+            var that = this; // 命名为that/_this/self
+
+            this.shoplist.forEach(function(value, key) {
+                total.price += value.price * value.num;
+                total.sum += value.num;
+                total.cut += value.priceCut * value.num;
+
+            })
+
+            return total;
+        }
+    },
+
+})
+</script>

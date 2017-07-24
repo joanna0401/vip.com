@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="dist/css/commen.css">
+    <link rel="stylesheet" href="dist/css/iconfont.css">
+    <link rel="stylesheet" href="dist/css/user.css">
+    <link rel="shortcut icon" type="image/x-icon" href="dist/images/favicon.ico" media="screen" />
+</head>
+
+<body style="background-color:#FDFBFE;">
+    <div class="loginBox">
+        <div class="top">
+            <a href="#" class="to_index"></a>
+            <div class="banner_right"></div>
+        </div>
+        <div class="loginBody">
+            <div class="loginForm">
+                <p>如有账号，请登录</p>
+                <form action="">
+                    <label for="">
+                        <input type="text" name="username" placeholder="请输入手机号码" id="telephoto">
+                        <span class="telephoto">&nbsp;</span>
+                    </label>
+                    <label for="">
+                        <input type="password" name="password" placeholder="请输入密码" id="pass1">
+                        <span class="pass1">&nbsp;</span>
+                    </label>
+                    <label for="">
+                        <a href="javascript:;" class="logNow">登录</a>
+                    </label>
+                    <label for="">
+                        <input type="checkbox" checked><a href="#" class="readme">记住用户名</a>
+                        <a href="#" class="forget_pass">忘记密码</a>&nbsp;|&nbsp;<a href="reg.html" class="free_reg">免费注册</a>
+                    </label>
+                </form>
+                <div class="others_login">
+                    <p>合作网站账号登录：</p>
+                    <a href="#" class="login_icon sina"></a>
+                    <a href="#" class="login_icon qq"></a>
+                    <a href="#" class="login_icon alipay"></a>
+                    <a href="#" class="login_icon weixin"></a>
+                    <a href="javascript:;" class="more">更多<i class="iconfont icon-sanjiaoxing2"></i></a>
+                    <div class="others">
+                        <a href="#">网易</a>|<a href="#">人人网</a>|<a href="#">建行登录</a>|<a href="#">财付通</a>
+                        <br>
+                        <a href="#">开心网</a>|<a href="#">中国移动</a>|<a href="#">翼支付</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Copyright 2008-2017 vip.com，All Rights Reserved ICP证：粤 B2-20080329</p>
+    </footer>
+</body>
+
+</html>
+<script src="dist/js/jquery.min.js"></script>
+<script>
+$(function() {
+    var show = true;
+    $('.more').click(function() {
+        if (show) {
+            show = false;
+            $('.others').css('transform', 'rotateX(0deg)');
+            $(this).children('i').css('transform', 'rotateX(180deg)');
+        } else {
+            show = true;
+            $('.others').css('transform', 'rotateX(-90deg)');
+            $(this).children('i').css('transform', 'rotateX(0deg)');
+        }
+    })
+})
+</script>
